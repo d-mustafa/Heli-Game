@@ -2,8 +2,8 @@ console.log('hanlder, wall replacement, powerUp')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
-let cnv = document.getElementById("my-canvas");
-let ctx = cnv.getContext("2d");
+const cnv = document.getElementById("my-canvas");
+const ctx = cnv.getContext("2d");
 cnv.width = 800;
 cnv.height = 600;
 
@@ -11,11 +11,16 @@ cnv.height = 600;
 let heliImg = document.createElement("img");
 heliImg.src = "img/heliBlueTransparent.png";
 
-let explosion = document.createElement("audio");
+const explosion = document.createElement("audio");
 explosion.src = "sound/explosion.wav";
+explosion.preload = "none";
+let explosionPromise;
 
-let propeller = document.createElement("audio");
+const propeller = document.createElement("audio");
 propeller.src = "sound/propeller.wav";
+propeller.preload = "none";
+let propellerPromise;
+
 
 let mouseIsPressed = false;
 
@@ -77,7 +82,7 @@ function pressHandler() {
 
   // Play propeller sound
   propeller.currentTime = 0;
-  propeller.play();
+  propellerPromise = propeller.play();
 
   // Start Game on Mousedown
   if (state === "start") {
@@ -87,5 +92,19 @@ function pressHandler() {
 
 function releaseHandler() {
   mouseIsPressed = false;
-  propeller.pause();
+
+  // Pause propeller sound
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+      // We can now safely pause video...
+      propeller.pause();
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+      console.warn(error);
+    });
+  }
 }
