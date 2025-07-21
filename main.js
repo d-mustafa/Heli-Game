@@ -1,4 +1,4 @@
-console.log('promise, powerUp')
+console.log('replacements')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
