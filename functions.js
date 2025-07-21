@@ -175,21 +175,33 @@ function reset() {
       this.accel = accel;
     }
 
-    moveWall(nextWallWidth) {
+    moveWall(nextwall) {
       this.x += this.speed;
       this.speed += this.accel;
 
       // If out of bounds
       if (this.x + this.w < 0) {
-        this.x = cnv.width + nextWallWidth;
+        this.x = nextwall.x + 500;
         this.y = Math.random() * 300 + 100;
       }
+    }
+
+    checkCollisions() {
+      if (
+        heli.x + heli.w / 2 >= this.x - this.w / 2 &&
+        heli.x + heli.w / 2 <= this.x + this.w / 2 &&
+        heli.y - heli.h / 2 >= this.y - this.h / 2 &&
+        heli.y - heli.h / 2 <= this.y + this.h - this.w / 2
+      ) {
+        gameOver();
+      }
+    }
   }
 
-  //let newWall1 = new Wall(cnv.width, Math.random()*300+100, 50, 100, -3, -0.0025);
-  //let newWall2 = new Wall(cnv.width+500, Math.random()*300+100, 50, 100, -3, -0.0025);
-  //let newWall3 = new Wall(cnv.width+1000, Math.random()*300+100, 50, 100, -3, -0.0025);
-  
+  let wall1 = new Wall(cnv.width, Math.random()*300+100, 50, 100, -3, -0.0025);
+  let wall2 = new Wall(cnv.width+500, Math.random()*300+100, 50, 100, -3, -0.0025);
+  let wall3 = new Wall(cnv.width+1000, Math.random()*300+100, 50, 100, -3, -0.0025);
+  /*
   wall1 = {
     x: cnv.width,
     y: Math.random() * 300 + 100,
@@ -213,7 +225,7 @@ function reset() {
     h: 100,
     speed: -3,
     accel: -0.0025,
-  };
+  }; */
   distance = {
     d: 0,
     speed: 0.025,
