@@ -130,35 +130,9 @@ function reset() {
     speed: 0,
     accel: 0.5,
   };
-
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
   wall3 = new Wall(cnv.width + 1000);
-  /*
-  wall1 = {
-    x: cnv.width,
-    y: Math.random() * 300 + 100,
-    w: 50,
-    h: 100,
-    speed: -3,
-    accel: -0.0025,
-  };
-  wall2 = {
-    x: cnv.width + 500,
-    y: Math.random() * 300 + 100,
-    w: 50,
-    h: 100,
-    speed: -3,
-    accel: -0.0025,
-  };
-  wall3 = {
-    x: cnv.width + 1000,
-    y: Math.random() * 300 + 100,
-    w: 50,
-    h: 100,
-    speed: -3,
-    accel: -0.0025,
-  }; */
   distance = {
     d: 0,
     speed: 0.025,
