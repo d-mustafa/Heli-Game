@@ -254,7 +254,8 @@ class Wall {
       heli.x + heli.w / 2 >= this.x - this.w / 2 &&
       heli.x + heli.w / 2 <= this.x + this.w / 2 &&
       heli.y - heli.h / 2 >= this.y - this.h / 2 &&
-      heli.y - heli.h / 2 <= this.y + this.h - this.w / 2
+      heli.y - heli.h / 2 <= this.y + this.h - this.w / 2 &&
+      !heli.invincible
     ) gameOver();
   }
 }
