@@ -49,33 +49,6 @@ function checkCollisions() {
   wall1.checkCollisions()
   wall2.checkCollisions()
   wall3.checkCollisions()
-  
-  /*
-  if (
-    heli.x + heli.w / 2 >= wall1.x - wall1.w / 2 &&
-    heli.x + heli.w / 2 <= wall1.x + wall1.w / 2 &&
-    heli.y - heli.h / 2 >= wall1.y - wall1.h / 2 &&
-    heli.y - heli.h / 2 <= wall1.y + wall1.h - wall1.w / 2
-  ) {
-    gameOver();
-  }
-  if (
-    heli.x + heli.w / 2 >= wall2.x - wall2.w / 2 &&
-    heli.x + heli.w / 2 <= wall2.x + wall2.w / 2 &&
-    heli.y - heli.h / 2 >= wall2.y - wall2.h / 2 &&
-    heli.y - heli.h / 2 <= wall2.y + wall2.h - wall2.w / 2
-  ) {
-    gameOver();
-  }
-  if (
-    heli.x + heli.w / 2 >= wall3.x - wall3.w / 2 &&
-    heli.x + heli.w / 2 <= wall3.x + wall3.w / 2 &&
-    heli.y - heli.h / 2 >= wall3.y - wall3.h / 2 &&
-    heli.y - heli.h / 2 <= wall3.y + wall3.h - wall3.w / 2
-  ) {
-    gameOver();
-  }
-  */
 }
 
 function gameOver() {
@@ -100,33 +73,6 @@ function moveObjects() {
     powerUp.x = cnv.width + 1250;
     powerUp.y = Math.random() * 300 + 100;
   }
-  
-  
-  /*
-  // Wall1
-  wall1.x += wall1.speed;
-  wall1.speed += wall1.accel;
-  if (wall1.x + wall1.w < 0) {
-    wall1.x = wall3.x + 500;
-    wall1.y = Math.random() * 300 + 100;
-  }
-
-  // Wall2
-  wall2.x += wall2.speed;
-  wall2.speed += wall2.accel;
-  if (wall2.x + wall2.w < 0) {
-    wall2.x = wall1.x + 500;
-    wall2.y = Math.random() * 300 + 100;
-  }
-
-  // Wall3
-  wall3.x += wall3.speed;
-  wall3.speed += wall3.accel;
-  if (wall3.x + wall3.w < 0) {
-    wall3.x = wall2.x + 500;
-    wall3.y = Math.random() * 300 + 100;
-  }
-  */
 }
 
 function moveHeli() {
