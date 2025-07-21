@@ -46,11 +46,11 @@ function checkCollisions() {
   }
 
   // Collsions wih the Walls
-  /*
   wall1.checkCollisions()
   wall2.checkCollisions()
   wall3.checkCollisions()
-  */
+  
+  /*
   if (
     heli.x + heli.w / 2 >= wall1.x - wall1.w / 2 &&
     heli.x + heli.w / 2 <= wall1.x + wall1.w / 2 &&
@@ -75,6 +75,7 @@ function checkCollisions() {
   ) {
     gameOver();
   }
+  */
 }
 
 function gameOver() {
@@ -89,11 +90,11 @@ function gameOver() {
 }
 
 function moveWalls() {
-  /*
   wall1.moveWall(wall3)
   wall2.moveWall(wall1)
   wall3.moveWall(wall2)
-  */
+  
+  /*
   // Wall1
   wall1.x += wall1.speed;
   wall1.speed += wall1.accel;
@@ -117,6 +118,7 @@ function moveWalls() {
     wall3.x = wall2.x + 500;
     wall3.y = Math.random() * 300 + 100;
   }
+  */
 }
 
 function moveHeli() {
