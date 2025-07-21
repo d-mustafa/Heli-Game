@@ -166,13 +166,13 @@ function reset() {
   };
 
   class Wall {
-    constructor(x, y, w, h, speed, accel) {
+    constructor(x) {
       this.x = x;
-      this.y = y;
-      this.w = w;
-      this.h = h;
-      this.speed = speed;
-      this.accel = accel;
+      this.y = Math.random() * 300 + 100,
+      this.w = 50;
+      this.h = 100;
+      this.speed = -3;
+      this.accel = -0.0025;
     }
 
     moveWall(nextwall) {
@@ -192,15 +192,14 @@ function reset() {
         heli.x + heli.w / 2 <= this.x + this.w / 2 &&
         heli.y - heli.h / 2 >= this.y - this.h / 2 &&
         heli.y - heli.h / 2 <= this.y + this.h - this.w / 2
-      ) {
-        gameOver();
-      }
+      ) gameOver();
     }
   }
 
-  let wall1 = new Wall(cnv.width, Math.random()*300+100, 50, 100, -3, -0.0025);
-  let wall2 = new Wall(cnv.width+500, Math.random()*300+100, 50, 100, -3, -0.0025);
-  let wall3 = new Wall(cnv.width+1000, Math.random()*300+100, 50, 100, -3, -0.0025);
+  wall1 = new Wall(cnv.width);
+  wall2 = new Wall(cnv.width + 500);
+  wall3 = new Wall(cnv.width + 1000);
+  
   /*
   wall1 = {
     x: cnv.width,
