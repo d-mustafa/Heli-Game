@@ -1,3 +1,4 @@
+console.log('hanlder and wall replacement')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
@@ -46,7 +47,7 @@ function draw() {
 // Mouse
 document.addEventListener("mousedown", pressHandler);
 document.addEventListener("mouseup", releaseHandler);
-console.log(hanlder)
+
 // Keyboard
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space") pressHandler();
