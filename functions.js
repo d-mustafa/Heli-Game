@@ -19,7 +19,7 @@ function runGame() {
   // contains all the necessary functions for the game to run
   // LOGIC
   moveHeli();
-  moveWalls();
+  moveObjects();
   checkCollisions();
   addDistance();
 
@@ -89,10 +89,18 @@ function gameOver() {
   setTimeout(reset, 1500);
 }
 
-function moveWalls() {
+function moveObjects() {
   wall1.moveWall(wall3)
   wall2.moveWall(wall1)
   wall3.moveWall(wall2)
+  
+  powerUp.x += powerUp.speed;
+  powerUp.speed += powerUp.accel;
+  if (powerUp.x + powerUp.w < 0) {
+    powerUp.x = cnv.width + 1250;
+    powerUp.y = Math.random() * 300 + 100;
+  }
+  
   
   /*
   // Wall1
@@ -143,13 +151,13 @@ function moveHeli() {
 
 function drawGame() {
   drawMainComponenents();
-  drawWalls();
+  drawObjects();
 }
 
 // Draw Game Over Screen
 function drawGameOver() {
   drawMainComponenents();
-  drawWalls();
+  drawObjects();
 
   // Circle around Helicopter
   ctx.strokeStyle = "red";
@@ -166,7 +174,7 @@ function drawGameOver() {
 
 // HELPER FUNCTIONS
 function reset() {
-  // Completely restrarts the game
+  // Restarts the game
   state = "start";
   heli = {
     x: 200,
@@ -177,41 +185,9 @@ function reset() {
     accel: 0.5,
   };
 
-  class Wall {
-    constructor(x) {
-      this.x = x;
-      this.y = Math.random() * 300 + 100,
-      this.w = 50;
-      this.h = 100;
-      this.speed = -3;
-      this.accel = -0.0025;
-    }
-
-    moveWall(wallahead) {
-      this.x += this.speed;
-      this.speed += this.accel;
-
-      // If out of bounds
-      if (this.x + this.w < 0) {
-        this.x = wallahead.x + 500;
-        this.y = Math.random() * 300 + 100;
-      }
-    }
-
-    checkCollisions() {
-      if (
-        heli.x + heli.w / 2 >= this.x - this.w / 2 &&
-        heli.x + heli.w / 2 <= this.x + this.w / 2 &&
-        heli.y - heli.h / 2 >= this.y - this.h / 2 &&
-        heli.y - heli.h / 2 <= this.y + this.h - this.w / 2
-      ) gameOver();
-    }
-  }
-
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
   wall3 = new Wall(cnv.width + 1000);
-  
   /*
   wall1 = {
     x: cnv.width,
@@ -243,18 +219,20 @@ function reset() {
     accel: 0.00001,
   };
   powerUp = {
-    x: 750,
-    y: 25,
+    x: cnv.width + 1250,
+    y: Math.random() * 300 + 100,
     speed: -3,
-    accel: -0.0025,
+    accel: -0.003,
   };
 }
 
-function drawWalls() {
+function drawObjects() {
   ctx.fillStyle = "green";
   ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
   ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h);
   ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
+  
+  drawPowerUp(powerUp.x, powerUp.y);
 }
 
 function drawMainComponenents() {
@@ -276,10 +254,6 @@ function drawMainComponenents() {
 
   // Helicopter
   ctx.drawImage(heliImg, heli.x, heli.y);
-
-  // Power Up (DIDNT HAVE ENOUGH TIME TO GET THE POWER UP WORKING SORRY, BUT HERES THE DESIGN)
-  // Now working on it :D
-  drawPowerUp(powerUp.x, powerUp.y);
 }
 
 function drawPowerUp(x, y) {
@@ -304,4 +278,35 @@ function drawPowerUp(x, y) {
 
   ctx.fillRect(x-5, y, 10, 12);
   ctx.fill();
+}
+
+class Wall {
+  constructor(x) {
+    this.x = x;
+    this.y = Math.random() * 300 + 100,
+    this.w = 50;
+    this.h = 100;
+    this.speed = -3;
+    this.accel = -0.0025;
+  }
+
+  moveWall(wallahead) {
+    this.x += this.speed;
+    this.speed += this.accel;
+
+    // If out of bounds
+    if (this.x + this.w < 0) {
+      this.x = wallahead.x + 500;
+      this.y = Math.random() * 300 + 100;
+    }
+  }
+
+  checkCollisions() {
+    if (
+      heli.x + heli.w / 2 >= this.x - this.w / 2 &&
+      heli.x + heli.w / 2 <= this.x + this.w / 2 &&
+      heli.y - heli.h / 2 >= this.y - this.h / 2 &&
+      heli.y - heli.h / 2 <= this.y + this.h - this.w / 2
+    ) gameOver();
+  }
 }
