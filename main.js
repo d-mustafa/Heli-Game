@@ -1,4 +1,4 @@
-console.log('powerup collisions')
+console.log('powerup collisions + respawns')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
