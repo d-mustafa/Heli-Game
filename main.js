@@ -1,4 +1,4 @@
-console.log('hanlder and wall replacement')
+console.log('hanlder, wall replacement, powerUp')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
@@ -24,7 +24,7 @@ let state;
 let heli;
 let wall1, wall2, wall3;
 let distance;
-let powerup;
+let powerUp;
 let best = 0;
 reset();
 
