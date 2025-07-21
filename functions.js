@@ -59,9 +59,16 @@ function checkCollisions() {
   if (dist < powerUp.r + 20) {
     console.log("PowerUp collision!")
     heli.invincible = true;
+    heliImg.src = 'img/heliGreenTransoarent.png'
+    
     setTimeout(() => {
       heli.invincible = false;
+      heliImg.src = 'img/heliBlueTransoarent.png'
     }, 5000)
+
+    powerUp.x = cnv.width + 1250;
+    powerUp.y = Math.random() * 300 + 100;
+    powerUp.speed = -3;
   };
 }
 
