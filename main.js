@@ -24,6 +24,7 @@ let state;
 let heli;
 let wall1, wall2, wall3;
 let distance;
+let powerup;
 let best = 0;
 reset();
 
