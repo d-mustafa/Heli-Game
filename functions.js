@@ -174,6 +174,16 @@ function reset() {
       this.speed = speed;
       this.accel = accel;
     }
+
+    moveWall(nextWallWidth) {
+      this.x += this.speed;
+      this.speed += this.accel;
+
+      // If out of bounds
+      if (this.x + this.w < 0) {
+        this.x = cnv.width + nextWallWidth;
+        this.y = Math.random() * 300 + 100;
+      }
   }
 
   //let newWall1 = new Wall(cnv.width, Math.random()*300+100, 50, 100, -3, -0.0025);
