@@ -38,9 +38,11 @@ function addDistance() {
 function checkCollisions() {
   // Collisions with Top and Bottom Green Bars
   if (heli.y < 50) {
-    gameOver();
+    if (invincible) heli.y = 50;
+    else gameOver();
   } else if (heli.y + heli.h > cnv.height - 50) {
-    gameOver();
+    if (invincible) heli.y = cnv.height - 50 - heli.h;
+    else gameOver();
   }
 
   // Collisions with the Walls
@@ -53,7 +55,10 @@ function checkCollisions() {
   const dy = heli.y - powerUp.y;
   const dist = Math.hypot(dx, dy);
 
-  if (dist < powerUp.r + 20) console.log("PowerUp collision!");
+  if (dist < powerUp.r + 20) {
+    console.log("PowerUp collision!")
+    invincible = true;
+  };
 }
 
 function gameOver() {
