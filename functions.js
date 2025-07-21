@@ -57,19 +57,29 @@ function checkCollisions() {
   const dist = Math.hypot(dx, dy);
 
   if (dist < powerUp.r + 20) {
-    console.log("PowerUp collision!")
     heli.invincible = true;
-    heliImg.src = 'img/heliGreenTransoarent.png'
-    
-    setTimeout(() => {
-      heli.invincible = false;
-      heliImg.src = 'img/heliBlueTransoarent.png'
-    }, 5000)
-
     powerUp.x = cnv.width + 1250;
     powerUp.y = Math.random() * 300 + 100;
     powerUp.speed = -3;
+    powerUp.lastCollected = now;
   };
+
+  if (now - powerUp.lastCollected < 3) { // turns heli's color green
+    heliImg.src = 'img/heliGreenTransparent.png';
+    if (now - powerUp.lastCollected < 2.5) heli.flickerTimer = now;
+  }
+  else if (now - powerUp.lastCollected < 5) { // heli's color swaps between green and blue
+    if (now - heli.flickerTimer >= 0.5) {
+      heli.flickerTimer = now;
+      
+      if (heliImg.src === 'img/heliGreenTransparent.png') {
+        heliImg.src = 'img/heliBlueTransparent.png';
+      } elseheliImg.src = 'img/heliGreenTransparent.png';
+    }
+  } else { // turns heli's color blue
+    heli.invincible = false;
+    heliImg.src = 'img/heliBlueTransparent.png';
+  }
 }
 
 function gameOver() {
@@ -152,6 +162,7 @@ function reset() {
     speed: 0,
     accel: 0.5,
     invincible: false,
+    flickerTimer: null,
   };
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
@@ -167,6 +178,7 @@ function reset() {
     r: 20,
     speed: -3,
     accel: -0.003,
+    lastCollected: null,
   };
 }
 
