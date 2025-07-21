@@ -8,6 +8,8 @@ cnv.width = 800;
 cnv.height = 600;
 
 // Global Variables (Once)
+let mouseIsPressed = false;
+
 let heliImg = document.createElement("img");
 heliImg.src = "img/heliBlueTransparent.png";
 
@@ -19,9 +21,6 @@ const propeller = document.createElement("audio");
 propeller.src = "sound/propeller.wav";
 propeller.preload = "none";
 let propellerPromise;
-
-
-let mouseIsPressed = false;
 
 // Global Variables (Reset)
 let state;
