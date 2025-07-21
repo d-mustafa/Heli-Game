@@ -49,6 +49,12 @@ document.addEventListener("mouseup", mouseupHandler);
 document.addEventListener("touchstart", mousedownHanlder);
 document.addEventListener("touchend", mouseupHanlder);
 
+// Disables Right Clicks
+document.addEventListener("contextmenu", function(event) {
+  event.preventDefault();
+});
+
+
 function mousedownHanlder() {
   mouseIsPressed = true;
 
