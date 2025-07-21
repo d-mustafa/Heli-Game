@@ -46,6 +46,11 @@ function checkCollisions() {
   }
 
   // Collsions wih the Walls
+  /*
+  wall1.checkCollisions()
+  wall2.checkCollisions()
+  wall3.checkCollisions()
+  */
   if (
     heli.x + heli.w / 2 >= wall1.x - wall1.w / 2 &&
     heli.x + heli.w / 2 <= wall1.x + wall1.w / 2 &&
@@ -80,10 +85,15 @@ function gameOver() {
   explosion.play();
   state = "gameover";
 
-  setTimeout(reset, 2000);
+  setTimeout(reset, 1500);
 }
 
 function moveWalls() {
+  /*
+  wall1.moveWall(wall3)
+  wall2.moveWall(wall1)
+  wall3.moveWall(wall2)
+  */
   // Wall1
   wall1.x += wall1.speed;
   wall1.speed += wall1.accel;
@@ -175,13 +185,13 @@ function reset() {
       this.accel = -0.0025;
     }
 
-    moveWall(nextwall) {
+    moveWall(wallahead) {
       this.x += this.speed;
       this.speed += this.accel;
 
       // If out of bounds
       if (this.x + this.w < 0) {
-        this.x = nextwall.x + 500;
+        this.x = wallahead.x + 500;
         this.y = Math.random() * 300 + 100;
       }
     }
