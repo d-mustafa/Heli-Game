@@ -46,6 +46,9 @@ function draw() {
 document.addEventListener("mousedown", mousedownHanlder);
 document.addEventListener("mouseup", mouseupHandler);
 
+document.addEventListener("touchstart", mousedownHanlder);
+document.addEventListener("touchend", mouseupHanlder);
+
 function mousedownHanlder() {
   mouseIsPressed = true;
 
