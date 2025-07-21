@@ -15,6 +15,7 @@ function drawStart() {
 
 function runGame() {
   // LOGIC
+  drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
   moveHeli();
   moveObjects();
   checkCollisions();
@@ -113,7 +114,6 @@ function drawObjects() {
   ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
   ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h);
   ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
-  drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
 }
 
 function drawGameOver() {
