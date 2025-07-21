@@ -44,33 +44,33 @@ function draw() {
 
 // EVENT STUFF
 // Mouse
-document.addEventListener("mousedown", mousedownHanlder);
-document.addEventListener("mouseup", mouseupHandler);
-
+document.addEventListener("mousedown", pressHandler);
+document.addEventListener("mouseup", releaseHandler);
+console.log(hanlder)
 // Keyboard
 document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") mousedownHanlder;
+  if (event.code === "Space") pressHandler();
 });
 
 document.addEventListener("keyup", (event) => {
-  if (event.code === "Space") mouseupHanlder;
+  if (event.code === "Space") releaseHandler();
 });
 
 // Touchscreen
 document.addEventListener("touchstart", (event) => {
-  mousedownHanlder();
+  pressHandler();
   event.preventDefault(); // Prevent long-press and selection
 }, { passive: false });
 
-document.addEventListener("touchend", mouseupHanlder, false);
-document.addEventListener("touchcancel", mouseupHanlder, false);
+document.addEventListener("touchend", releaseHandler, false);
+document.addEventListener("touchcancel", releaseHandler, false);
 
 document.addEventListener("contextmenu", function(event) {
   event.preventDefault();
 }, false);
 
 // Handlers
-function mousedownHanlder() {
+function pressHandler() {
   mouseIsPressed = true;
 
   // Play propeller sound
@@ -83,7 +83,7 @@ function mousedownHanlder() {
   }
 }
 
-function mouseupHandler() {
+function releaseHandler() {
   mouseIsPressed = false;
   propeller.pause();
 }
