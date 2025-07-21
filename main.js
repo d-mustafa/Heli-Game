@@ -14,7 +14,6 @@ heliImg.src = "img/heliBlueTransparent.png";
 const explosion = document.createElement("audio");
 explosion.src = "sound/explosion.wav";
 explosion.preload = "none";
-let explosionPromise;
 
 const propeller = document.createElement("audio");
 propeller.src = "sound/propeller.wav";
