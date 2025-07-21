@@ -9,6 +9,7 @@ cnv.height = 600;
 
 // Global Variables (Once)
 let mouseIsPressed = false;
+let now = Date.now();
 
 let heliImg = document.createElement("img");
 heliImg.src = "img/heliBlueTransparent.png";
