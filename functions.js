@@ -74,7 +74,7 @@ function moveObjects() {
   
   powerUp.x += powerUp.speed;
   powerUp.speed += powerUp.accel;
-  if (powerUp.x + powerUp.w < 0) {
+  if (powerUp.x + powerUp.r < 0) {
     powerUp.x = cnv.width + 1250;
     powerUp.y = Math.random() * 300 + 100;
   }
