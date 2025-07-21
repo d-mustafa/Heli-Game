@@ -164,6 +164,22 @@ function reset() {
     speed: 0,
     accel: 0.5,
   };
+
+  class Wall {
+    constructor(x, y, w, h, speed, accel) {
+      this.x = x;
+      this.y = y;
+      this.w = w;
+      this.h = h;
+      this.speed = speed;
+      this.accel = accel;
+    }
+  }
+
+  //let newWall1 = new Wall(cnv.width, Math.random()*300+100, 50, 100, -3, -0.0025);
+  //let newWall2 = new Wall(cnv.width+500, Math.random()*300+100, 50, 100, -3, -0.0025);
+  //let newWall3 = new Wall(cnv.width+1000, Math.random()*300+100, 50, 100, -3, -0.0025);
+  
   wall1 = {
     x: cnv.width,
     y: Math.random() * 300 + 100,
