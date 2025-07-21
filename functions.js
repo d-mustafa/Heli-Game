@@ -240,6 +240,12 @@ function reset() {
     speed: 0.025,
     accel: 0.00001,
   };
+  powerUp = {
+    x: 750,
+    y: 25,
+    speed: -3,
+    accel: -0.0025,
+  };
 }
 
 function drawWalls() {
@@ -270,26 +276,30 @@ function drawMainComponenents() {
   ctx.drawImage(heliImg, heli.x, heli.y);
 
   // Power Up (DIDNT HAVE ENOUGH TIME TO GET THE POWER UP WORKING SORRY, BUT HERES THE DESIGN)
+  // Now working on it :D
+  drawPowerUp(powerUp.x, powerUp.y);
+}
+
+function drawPowerUp(x, y) {
   ctx.fillStyle = "white";
   ctx.beginPath();
-  ctx.arc(750, 25, 20, 0, Math.PI * 2);
+  ctx.arc(x, y, 20, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.lineWidth = 3;
   ctx.strokeStyle = "lime";
   ctx.beginPath();
-  ctx.arc(750, 25, 20, 0, Math.PI * 2);
+  ctx.arc(x, y, 20, 0, Math.PI * 2);
   ctx.stroke();
 
   ctx.fillStyle = "lime";
   ctx.beginPath();
-  ctx.moveTo(750, 12);
-  ctx.lineTo(760, 28);
-  ctx.lineTo(740, 28);
-  ctx.lineTo(750, 12);
+  ctx.moveTo(x, y-13);
+  ctx.lineTo(x+10, y+3);
+  ctx.lineTo(x-10, y+3);
+  ctx.lineTo(x, y-13);
   ctx.fill();
 
-  ctx.fillStyle = "lime";
-  ctx.fillRect(745, 25, 10, 12);
+  ctx.fillRect(x-5, y, 10, 12);
   ctx.fill();
 }
