@@ -1,4 +1,4 @@
-console.log('invincibility and powerUp reset')
+console.log('invincibility and powerUp reset and flicker')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
