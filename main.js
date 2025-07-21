@@ -1,4 +1,4 @@
-console.log('hanlder, wall replacement, powerUp')
+console.log('promise, powerUp')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
@@ -94,8 +94,8 @@ function releaseHandler() {
   mouseIsPressed = false;
 
   // Pause propeller sound
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
+  if (propellerPromise !== undefined) {
+    propellerPromise.then(_ => {
       // Automatic playback started!
       // Show playing UI.
       // We can now safely pause video...
