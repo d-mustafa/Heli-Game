@@ -43,18 +43,33 @@ function draw() {
 }
 
 // EVENT STUFF
+// Mouse
 document.addEventListener("mousedown", mousedownHanlder);
 document.addEventListener("mouseup", mouseupHandler);
 
-document.addEventListener("touchstart", mousedownHanlder);
-document.addEventListener("touchend", mouseupHanlder);
-
-// Disables Right Clicks
-document.addEventListener("contextmenu", function(event) {
-  event.preventDefault();
+// Keyboard
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space") mousedownHanlder;
 });
 
+document.addEventListener("keyup", (event) => {
+  if (event.code === "Space") mouseupHanlder;
+});
 
+// Touchscreen
+document.addEventListener("touchstart", (event) => {
+  mousedownHanlder();
+  event.preventDefault(); // Prevent long-press and selection
+}, { passive: false });
+
+document.addEventListener("touchend", mouseupHanlder, false);
+document.addEventListener("touchcancel", mouseupHanlder, false);
+
+document.addEventListener("contextmenu", function(event) {
+  event.preventDefault();
+}, false);
+
+// Handlers
 function mousedownHanlder() {
   mouseIsPressed = true;
 
