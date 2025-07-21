@@ -1,6 +1,5 @@
 // FUNCTIONS
 
-// Draw Start Screen
 function drawStart() {
   drawMainComponenents();
 
@@ -14,9 +13,7 @@ function drawStart() {
   ctx.fillText("RELEASE TO GO DOWN", 415, 480);
 }
 
-// Draw Game Elements
 function runGame() {
-  // contains all the necessary functions for the game to run
   // LOGIC
   moveHeli();
   moveObjects();
@@ -24,7 +21,8 @@ function runGame() {
   addDistance();
 
   // DRAW
-  drawGame();
+  drawMainComponenents();
+  drawObjects();
 }
 
 function addDistance() {
@@ -45,10 +43,17 @@ function checkCollisions() {
     gameOver();
   }
 
-  // Collsions wih the Walls
+  // Collisions with the Walls
   wall1.checkCollisions()
   wall2.checkCollisions()
   wall3.checkCollisions()
+  
+  // Collisions with the powerUp
+  const dx = heli.x - powerUp.x;
+  const dy = heli.y - powerUp.y;
+  const dist = Math.hypot(dx, dy);
+
+  if (dist < powerUp.r + 20) console.log("PowerUp collision!");
 }
 
 function gameOver() {
@@ -95,12 +100,14 @@ function moveHeli() {
   heli.y += heli.speed;
 }
 
-function drawGame() {
-  drawMainComponenents();
-  drawObjects();
+function drawObjects() {
+  ctx.fillStyle = "green";
+  ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
+  ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h);
+  ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
+  drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
 }
 
-// Draw Game Over Screen
 function drawGameOver() {
   drawMainComponenents();
   drawObjects();
@@ -141,18 +148,10 @@ function reset() {
   powerUp = {
     x: cnv.width + 1250,
     y: Math.random() * 300 + 100,
+    r: 20,
     speed: -3,
     accel: -0.003,
   };
-}
-
-function drawObjects() {
-  ctx.fillStyle = "green";
-  ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
-  ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h);
-  ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
-  
-  drawPowerUp(powerUp.x, powerUp.y);
 }
 
 function drawMainComponenents() {
@@ -176,16 +175,16 @@ function drawMainComponenents() {
   ctx.drawImage(heliImg, heli.x, heli.y);
 }
 
-function drawPowerUp(x, y) {
+function drawPowerUp(x, y, r) {
   ctx.fillStyle = "white";
   ctx.beginPath();
-  ctx.arc(x, y, 20, 0, Math.PI * 2);
+  ctx.arc(x, y, r, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.lineWidth = 3;
   ctx.strokeStyle = "lime";
   ctx.beginPath();
-  ctx.arc(x, y, 20, 0, Math.PI * 2);
+  ctx.arc(x, y, r, 0, Math.PI * 2);
   ctx.stroke();
 
   ctx.fillStyle = "lime";
