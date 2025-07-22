@@ -221,35 +221,11 @@ function drawMainComponenents() {
   heli.hitpoints = [
     [202, 262], [226, 256], [245, 253], [259, 253], [268, 256], [279, 262], [271, 280], [270, 290], [238, 290],
   ]
-  const heliW = heli.w/2
-  const heliH = heli.h/2
-  ctx.beginPath();
-  ctx.arc(heli.offsetX-heliW+5, heli.offsetY, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(heli.offsetX, heli.offsetY-heliH, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(heli.offsetX+10, heli.offsetY-heliH, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(heli.offsetX+heliW, heli.offsetY-5, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(heli.offsetX+heliW-10, heli.offsetY+2, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(heli.offsetX, heli.offsetY+heliH, 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(heli.offsetX+heliW-10, heli.offsetY+heliH, 2, 0, Math.PI * 2);
-  ctx.fill();
+  for(let i in heli.hitpoints) {
+    ctx.beginPath();
+    ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2, 0, Math.PI*2);
+    ctx.fill();
+  }
 }
 
 function drawPowerUp(x, y, r) {
