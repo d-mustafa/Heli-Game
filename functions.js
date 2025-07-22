@@ -43,6 +43,7 @@ function checkCollisions() {
     if (heli.invincible) heli.y = cnv.height - 50 - heli.h;
     else gameOver();
   }
+  heli.offsetY = heli.y + heli.h/2;
 
   // Collisions with the Walls
   wall1.checkCollisions()
