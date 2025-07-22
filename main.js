@@ -1,4 +1,4 @@
-console.log('updateHitpoints and collisions')
+console.log('updateHitpoints, collisions, (x,x)')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
