@@ -52,15 +52,6 @@ function addDistance() {
 }
 
 function checkCollisions() {
-  // Collisions with Top and Bottom Green Bars
-  if (heli.y < 50) {
-    if (heli.invincible) heli.y = 50;
-    else gameOver();
-  } else if (heli.y + heli.h > cnv.height - 50) {
-    if (heli.invincible) heli.y = cnv.height - 50 - heli.h;
-    else gameOver();
-  }
-
   // Collisions with the Walls
   wall1.checkCollisions()
   wall2.checkCollisions()
@@ -68,6 +59,13 @@ function checkCollisions() {
   
   // Collisions with the powerUp
   for (let i in heli.hitpoints) {
+    // Collisions with Top and Bottom Green Bars
+    if (heli.hitpoints[i][1] < 50 || heli.hitpoints[i][1] > cnv.height - 50) {
+      if (heli.invincible) heli.y -= heli.speed;
+      else gameOver();
+    }
+    
+    // Collisions with the powerUp
     const dx = heli.hitpoints[i][0] - powerUp.x;
     const dy = heli.hitpoints[i][1] - powerUp.y;
     const dist = Math.hypot(dx, dy);
@@ -77,6 +75,8 @@ function checkCollisions() {
       heli.hitpoints[i][2] = "rgba(255, 0, 0, 0.5)";
     };
   }
+
+  // Flicker
   if (now - powerUp.lastCollected < 3000) { // turns heli's color green
     heliImg.src = 'img/heliGreenTransparent.png';
     if (now - powerUp.lastCollected < 2750) heli.flickerTimer = now;
