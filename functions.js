@@ -171,6 +171,7 @@ function reset() {
     speed: 0,
     accel: 0.5,
     invincible: false,
+    hitpoints: [],
   };
   heli.offsetX = heli.x + heli.w/2;
   heli.offsetY = heli.y + heli.h/2;
@@ -216,8 +217,33 @@ function drawMainComponenents() {
   ctx.drawImage(heliImg, heli.x, heli.y);
   
   ctx.fillStyle = "blue";
+  // HIT POINTS
   ctx.beginPath();
-  ctx.arc(heli.offsetX, heli.offsetY, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX-heli.w+5, heli.offsetY, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(heli.offsetX, heli.offsetY-heli.h, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(heli.offsetX+10, heli.offsetY-heli.h, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(heli.offsetX+heli.w, heli.offsetY-5, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(heli.offsetX+heli.w-10, heli.offsetY+2, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(heli.offsetX, heli.offsetY+heli.h, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(heli.offsetX+heli.w-10, heli.offsetY+heli.h, 5, 0, Math.PI * 2);
   ctx.fill();
 }
 
