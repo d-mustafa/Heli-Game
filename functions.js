@@ -199,7 +199,7 @@ function reset() {
     w: 80,
     h: 40,
     speed: 0,
-    lift: 0.75,
+    lift: 0.5,
     gravity: 0.3,
     max: -6,
     min: 5,
