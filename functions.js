@@ -125,6 +125,7 @@ function moveHeli() {
 
   // Move Helicopter by its soeed
   heli.y += heli.speed;
+  heli.offsetY = heli.y + heli.h/2;
 }
 
 function drawObjects() {
