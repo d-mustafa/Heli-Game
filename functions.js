@@ -84,6 +84,7 @@ function checkCollisions() {
       heli.hitpointDetected = i;
       heli.invincible = true;
       powerUp.lastCollected = Date.now();
+      invincibility.play();
     };
   }
 
