@@ -2,17 +2,16 @@ body {
   text-align: center;
   background: #222;
   margin-top: 50px;
-  
-  /* Prevent text selection and long-press callouts */
-  -webkit-user-select: none; /* Safari */
-  user-select: none;
-  -webkit-touch-callout: none; /* iOS Safari */
-  touch-action: none; /* Prevent gestures like double-tap zoom, etc */
 }
 
 /* CSS (visual size) */
 canvas {
   width: 800px;
   height: 600px;
-  touch-action: none;
+  
+  /* Prevent text selection and long-press callouts */
+  -webkit-user-select: none; /* Safari */
+  user-select: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  touch-action: none; /* Prevent gestures like double-tap zoom, etc */
 }
