@@ -75,7 +75,7 @@ function checkCollisions() {
     if (dist < powerUp.r + 10) {
       heli.invincible = true;
       powerUp.lastCollected = now;
-      heli.hitpoints[i][3] = "rgba(255, 0, 0, 0.5)";
+      heli.hitpoints[i][2] = "rgba(255, 0, 0, 0.5)";
     };
   }
   if (now - powerUp.lastCollected < 3000) { // turns heli's color green
@@ -139,7 +139,6 @@ function moveHeli() {
   // Move Helicopter by its soeed
   heli.y += heli.speed;
   heli.offsetY = heli.y + heli.h/2;
-  heli.updateHitpoints();
 }
 
 function drawObjects() {
@@ -167,6 +166,7 @@ function drawObjects() {
 function reset() {
   // Restarts the game
   state = "start";
+  
   heli = {
     x: 200,
     y: 250,
@@ -176,24 +176,19 @@ function reset() {
     accel: 0.5,
     invincible: false,
     /* hitpoints: [ [202, 261], [229, 255], [245, 253], [256, 253], [268, 255], [279, 262], [269, 277], [268, 289], [238, 288] ] */
-    hitpoints: [
-      [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
+    get hitpoints() {
+      return [ [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
       [this.x+56, this.y+3, 0], [this.x+68, this.y+5, 0], [this.x+79, this.y+12, 0],
-      [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0],
-    ],
-    updateHitpoints: function() {
-      this.hitpoints = [
-      [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
-      [this.x+56, this.y+3, 0], [this.x+68, this.y+5, 0], [this.x+79, this.y+12, 0],
-      [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0],
-    ];
-    }
+      [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0] ]
+    };
   };
   heli.offsetX = heli.x + heli.w/2;
   heli.offsetY = heli.y + heli.h/2;
+
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
   wall3 = new Wall(cnv.width + 1000);
+
   distance = {
     d: 0,
     speed: 0.025,
@@ -231,13 +226,14 @@ function drawMainComponenents() {
   ctx.fillRect(heli.x, heli.y, heli.w, heli.h);
   
   ctx.drawImage(heliImg, heli.x, heli.y);
-  
+
+  // Helicopter hitpoints
   for(let i in heli.hitpoints) {
-    if (heli.hitpoints[i][3] === 0) {
+    if (heli.hitpoints[i][2] === 0) {
       if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
       else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
     }
-    else ctx.fillStyle = heli.hitpoints[i][3];
+    else ctx.fillStyle = heli.hitpoints[i][2];
     
     ctx.beginPath();
     ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
