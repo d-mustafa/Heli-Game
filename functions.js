@@ -57,12 +57,14 @@ function checkCollisions() {
   wall2.checkCollisions()
   wall3.checkCollisions()
   
-  // Collisions with the powerUp
   for (let i in heli.hitpoints) {
     // Collisions with Top and Bottom Green Bars
     if (heli.hitpoints[i][1] < 50 || heli.hitpoints[i][1] > cnv.height - 50) {
       if (heli.invincible) heli.y -= heli.speed;
-      else gameOver();
+      else {
+        gameOver();
+        heli.hitpointDetcted = i;
+      }
     }
     
     // Collisions with the powerUp
@@ -72,7 +74,7 @@ function checkCollisions() {
     if (dist < powerUp.r + 10) {
       heli.invincible = true;
       powerUp.lastCollected = now;
-      heli.hitpoints[i][2] = "rgba(255, 0, 0, 0.5)";
+      heli.hitpointDetcted = i;
     };
   }
 
@@ -173,15 +175,17 @@ function reset() {
     speed: 0,
     accel: 0.5,
     invincible: false,
+    hitpointDetected: -1,
     /* hitpoints: [ [202, 261], [229, 255], [245, 253], [256, 253], [268, 255], [279, 262], [269, 277], [268, 289], [238, 288] ] */
     get hitpoints() {
-      return [ [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
-      [this.x+56, this.y+3, 0], [this.x+68, this.y+5, 0], [this.x+79, this.y+12, 0],
-      [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0] ]
+      return [ [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
+      [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
+      [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+38, this.y+38] ]
     },
     get offsetX() {this.x + this.w/2},
     get offsetY() {this.y + this.h/2},
   };
+  
 
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
@@ -227,11 +231,11 @@ function drawMainComponenents() {
 
   // Helicopter hitpoints
   for(let i in heli.hitpoints) {
-    if (heli.hitpoints[i][2] === 0) {
+    if (i === heli.hitpointDetected) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    else {
       if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
       else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
     }
-    else ctx.fillStyle = heli.hitpoints[i][2];
     
     ctx.beginPath();
     ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
@@ -292,7 +296,7 @@ class Wall {
          heli.hitpoints[i][1] >= this.y &&
          heli.hitpoints[i][1] <= this.y + this.h) {
         gameOver();
-        heli.hitpoints[i][2] = "rgba(255, 0, 0, 0.5)";
+        heli.hitpointDetected = i;
       }
     }
   }
