@@ -135,12 +135,9 @@ function moveObjects() {
 
 function moveHeli() {
   // Accelerate upward if mouse pressed
-  if (mouseIsPressed) {
-    heli.speed -= heli.lift
-  }
-
+  if (mouseIsPressed) heli.speed -= heli.lift
   // Apply Gravity
-  heli.speed += heli.gravity;
+  else heli.speed += heli.gravity;
 
   // Constrain Speed (max/min)
   if (heli.speed < heli.max) {
