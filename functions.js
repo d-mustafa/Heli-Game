@@ -135,20 +135,20 @@ function moveObjects() {
 function moveHeli() {
   // Accelerate upward if mouse pressed
   if (mouseIsPressed) {
-    heli.speed += -1;
+    heli.speed -= heli.lift
   }
 
-  // Apply Gravity(accel)
-  heli.speed += heli.accel;
+  // Apply Gravity
+  heli.speed += heli.gravity;
 
   // Constrain Speed (max/min)
   if (heli.speed > 5) {
     heli.speed = 5;
   } else if (heli.speed < -5) {
-    heli.speed = -5;
+    heli.speed = -7.5;
   }
 
-  // Move Helicopter by its soeed
+  // Move Helicopter by its speed
   heli.y += heli.speed;
 }
 
@@ -193,7 +193,8 @@ function reset() {
     w: 80,
     h: 40,
     speed: 0,
-    accel: 0.5,
+    lift: 1,
+    gravity: 0.3,
     invincible: false,
     hitpointDetected: -1,
     /* hitpoints: [
