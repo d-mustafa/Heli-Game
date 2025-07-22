@@ -1,4 +1,4 @@
-console.log('powerUp reset, flicker, proper drawing layers')
+console.log('flicker, collisions')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
