@@ -133,6 +133,11 @@ if (resetLocalData || !localData) {
   localStorage.setItem('localHeliGameData', JSON.stringify(userData));
 }
 
+// if the user crashes
+window.addEventListener('beforeunload', () => {
+  userData.best = best;
+  localStorage.setItem('localHeliGameData', JSON.stringify(userData))
+})
 
 // Dev Tools
 let track = false;
