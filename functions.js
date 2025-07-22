@@ -156,16 +156,18 @@ function drawObjects() {
   ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
 
   // Helicopter hitpoints
-  for(let i in heli.hitpoints) {
-    if (heli.hitpointDetected === i) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-    else {
-      if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
-      else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+  if (enableHitPoints) {
+    for(let i in heli.hitpoints) {
+      if (heli.hitpointDetected === i) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+      else {
+        if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+        else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+      }
+      
+      ctx.beginPath();
+      ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
+      ctx.fill();
     }
-    
-    ctx.beginPath();
-    ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
-    ctx.fill();
   }
 }
 
@@ -242,7 +244,7 @@ function drawMainComponenents() {
   
   ctx.drawImage(heliImg, heli.x, heli.y);
 
-  if (state === "start") {
+  if (state === "start" && enableHitPoints) {
     for(let i in heli.hitpoints) {
       if (heli.hitpointDetected === i) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
       else {
