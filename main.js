@@ -1,4 +1,4 @@
-console.log('flicker, offsets')
+console.log('flicker 250ms, offsets')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
