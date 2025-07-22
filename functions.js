@@ -113,7 +113,15 @@ function gameOver() {
     userData.best = best;
     localStorage.setItem('localHeliGameData', JSON.stringify(userData));
   }
-
+  // Pause propeller sound without causing errors
+  if (propellerPromise !== undefined) {
+    propellerPromise.then(_ => {
+      propeller.pause();
+    })
+    .catch(error => {
+      console.warn(error);
+    });
+  }
   explosion.play();
   state = "gameover";
 
