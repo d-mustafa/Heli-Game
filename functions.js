@@ -50,9 +50,15 @@ function checkCollisions() {
   wall3.checkCollisions()
   
   // Collisions with the powerUp
-  const dx = heli.x - powerUp.x;
-  const dy = heli.y - powerUp.y;
+  const dx = heli.offsetX - powerUp.x;
+  const dy = heli.offsetY - powerUp.y;
   const dist = Math.hypot(dx, dy);
+
+  // Hitbox
+  ctx.fillStyle = "rgba(0, 255, 0, 0.2)"
+  ctx.beginPath();
+  ctx.arc(powerUp.x, powerUp.y, powerUp.r + 20, 0, Math.PI*2);
+  ctx.fill();
 
   if (dist < powerUp.r + 20) {
     heli.invincible = true;
@@ -66,7 +72,6 @@ function checkCollisions() {
   else if (now - powerUp.lastCollected < 5000) { // heli's color swaps between green and blue
     if (now - heli.flickerTimer >= 500) {
       heli.flickerTimer = now;
-      
       
       if (heliImg.src.includes('img/heliBlueTransparent.png')) {
         heliImg.src = 'img/heliGreenTransparent.png';
@@ -260,12 +265,10 @@ class Wall {
   }
 
   checkCollisions() {
-    if (
-      heli.x + heli.w / 2 >= this.x - this.w / 2 &&
-      heli.x + heli.w / 2 <= this.x + this.w / 2 &&
-      heli.y - heli.h / 2 >= this.y - this.h / 2 &&
-      heli.y - heli.h / 2 <= this.y + this.h - this.w / 2 &&
-      !heli.invincible
-    ) gameOver();
+    if (!heli.invincible &&
+       heli.offsetX + heli.w/2 >= this.x &&
+       heli.offsetX - heli.w/2 <= this.x + this.w &&
+       heli.offsetY + heli.h/2 >= this.y &&
+       heli.offsetY - heli.h/2 <= this.y + this.h) gameOver();
   }
 }
