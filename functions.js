@@ -1,5 +1,4 @@
 // FUNCTIONS
-
 function drawStart() {
   drawMainComponenents();
 
@@ -60,12 +59,12 @@ function checkCollisions() {
     powerUp.lastCollected = now;
   };
 
-  if ((now - powerUp.lastCollected)/1000 < 3) { // turns heli's color green
+  if (now - powerUp.lastCollected < 3000) { // turns heli's color green
     heliImg.src = 'img/heliGreenTransparent.png';
-    if (now - powerUp.lastCollected < 2.5) heli.flickerTimer = now;
+    if (now - powerUp.lastCollected < 2500) heli.flickerTimer = now;
   }
-  else if ((now - powerUp.lastCollected)/1000 < 5) { // heli's color swaps between green and blue
-    if (now - heli.flickerTimer >= 0.5) {
+  else if (now - powerUp.lastCollected < 5000) { // heli's color swaps between green and blue
+    if (now - heli.flickerTimer >= 500) {
       heli.flickerTimer = now;
       
       if (heliImg.src === 'img/heliGreenTransparent.png') {
