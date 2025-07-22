@@ -49,7 +49,7 @@ function addDistance() {
     distance.speed = 0.5;
   }
   if (distance.d > best) {
-    best = distance.d;
+    best = Math.floor(distance.d);
     userData.best = best
     
     // save every 3 seconds
