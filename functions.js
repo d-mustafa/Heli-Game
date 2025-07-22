@@ -201,9 +201,15 @@ function drawMainComponenents() {
   ctx.fillText(`BEST: ${best}`, cnv.width - 250, cnv.height - 15);
 
   // Helicopter
-  ctx.drawImage(heliImg, heli.x, heli.y);
   ctx.fillStyle = "red";
   ctx.fillRect(heli.x, heli.y, heli.w, heli.h);
+  
+  ctx.drawImage(heliImg, heli.x, heli.y);
+  
+  ctx.fillStyle = "blue";
+  ctx.beginPath();
+  ctx.arc(heli.x, heli.y, 5, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 function drawPowerUp(x, y, r) {
