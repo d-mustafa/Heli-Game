@@ -90,21 +90,6 @@ function pressHandler() {
     // Play propeller sound
     propeller.currentTime = 0;
     propellerPromise = propeller.play();
-  } else {
-    // Pause propeller sound without causing errors
-    if (propellerPromise !== undefined) {
-      propellerPromise.then(_ => {
-        // Automatic playback started!
-        // Show playing UI.
-        // We can now safely pause video...
-        propeller.pause();
-      })
-      .catch(error => {
-        // Auto-play was prevented
-        // Show paused UI.
-        console.warn(error);
-      });
-    }
   }
 }
 function releaseHandler() {
@@ -112,14 +97,9 @@ function releaseHandler() {
   // Pause propeller sound without causing errors
   if (propellerPromise !== undefined) {
     propellerPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      // We can now safely pause video...
       propeller.pause();
     })
     .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
       console.warn(error);
     });
   }
