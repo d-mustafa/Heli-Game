@@ -1,4 +1,4 @@
-console.log('mouse detections cnv')
+console.log('early hitpoints detection')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
