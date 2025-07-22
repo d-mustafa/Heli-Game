@@ -219,9 +219,7 @@ function drawMainComponenents() {
   ctx.fillStyle = "blue";
   // HIT POINTS
   heli.hitpoints = [
-    [heli.offsetX-heliW+5, heli.offsetY,], [heli.offsetX, heli.offsetY-heliH], [heli.offsetX+10, heli.offsetY-heliH],
-    [heli.offsetX+heliW, heli.offsetY-5], [heli.offsetX+heliW-10, heli.offsetY+2], [heli.offsetX, heli.offsetY+heliH],
-    [heli.offsetX+heliW-10, heli.offsetY+heliH]
+    [205.6, 264], [245.7, 255], [259.7, 255], [279.7, 262], [], [], [],
   ]
   const heliW = heli.w/2
   const heliH = heli.h/2
