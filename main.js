@@ -112,6 +112,7 @@ function releaseHandler() {
 const localData = localStorage.getItem('localHeliGameData');
 let userData;
 let resetLocalData = false;
+let lastSave = 0;
 
 if (localData) {
   try {
