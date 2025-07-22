@@ -1,6 +1,5 @@
-console.log('enableHitPoints')
+console.log('early saving')
 // Helicopter Game Start
-
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
 const ctx = cnv.getContext("2d");
@@ -108,6 +107,31 @@ function releaseHandler() {
     });
   }
 }
+
+// User Data
+const localData = localStorage.getItem('localHeliGameData');
+let userData;
+let resetLocalData = false;
+
+if (localData) {
+  try {
+    userData = JSON.parse(localData);
+    ['best'].forEach(data =>{
+      if(!(data in userData)) userData[data] = eval(data)
+    })
+    best = userData.best;
+  }
+  catch (e) {
+    console.warn('invalid local data; resetting.\n', e);
+    localStorage.removeItem('localHeliGameData');
+    resetLocalData = true;
+  }
+}
+if (resetLocalData || !localData) {
+  userData = {best: best,};
+  localStorage.setItem('localHeliGameData', JSON.stringify(userData));
+}
+
 
 // Dev Tools
 let track = false;
