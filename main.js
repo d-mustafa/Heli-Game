@@ -1,4 +1,4 @@
-console.log('cnv')
+console.log('visual')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
