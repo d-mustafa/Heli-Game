@@ -50,7 +50,13 @@ function addDistance() {
   }
   if (distance.d > best) {
     best = distance.d;
-    userData.best = best;
+    userData.best = best
+    
+    // save every 3 seconds
+    if (now - lastSave >= 3000) {
+      localStorage.setItem('localHeliGameData', JSON.parse(userData));
+      lastSave = Date.now();
+    }
   }
 }
 
@@ -77,18 +83,18 @@ function checkCollisions() {
     if (dist < powerUp.r + 10) {
       heli.hitpointDetected = i;
       heli.invincible = true;
-      powerUp.lastCollected = now;
+      powerUp.lastCollected = Date.now();
     };
   }
 
   // Flicker
   if (now - powerUp.lastCollected < 3000) { // turns heli's color green
     heliImg.src = 'img/heliGreenTransparent.png';
-    if (now - powerUp.lastCollected < 2750) heli.flickerTimer = now;
+    if (now - powerUp.lastCollected < 2750) heli.flickerTimer = Date.now();
   }
   else if (now - powerUp.lastCollected < 5000) { // heli's color swaps between green and blue
     if (now - heli.flickerTimer >= 250) {
-      heli.flickerTimer = now;
+      heli.flickerTimer = Date.now();
       
       if (heliImg.src.includes('img/heliBlueTransparent.png')) {
         heliImg.src = 'img/heliGreenTransparent.png';
