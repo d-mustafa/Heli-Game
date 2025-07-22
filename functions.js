@@ -62,8 +62,8 @@ function checkCollisions() {
     if (heli.hitpoints[i][1] < 50 || heli.hitpoints[i][1] > cnv.height - 50) {
       if (heli.invincible) heli.y -= heli.speed;
       else {
-        gameOver();
         heli.hitpointDetcted = i;
+        gameOver();
       }
     }
     
@@ -72,9 +72,9 @@ function checkCollisions() {
     const dy = heli.hitpoints[i][1] - powerUp.y;
     const dist = Math.hypot(dx, dy);
     if (dist < powerUp.r + 10) {
+      heli.hitpointDetcted = i;
       heli.invincible = true;
       powerUp.lastCollected = now;
-      heli.hitpointDetcted = i;
     };
   }
 
@@ -142,18 +142,12 @@ function moveHeli() {
 }
 
 function drawObjects() {
-  // PowerUp despawning after collection
+  // PowerUp
+  drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
   if (heli.invincible) {
     powerUp.x = cnv.width + 1250;
     powerUp.y = Math.random() * 300 + 100;
   }
-  
-  drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
-  // PowerUp Hitbox
-  ctx.fillStyle = "rgba(0, 255, 0, 0.2)";
-  ctx.beginPath();
-  ctx.arc(powerUp.x, powerUp.y, powerUp.r + 10, 0, Math.PI*2);
-  ctx.fill();
 
   // Walls
   ctx.fillStyle = "green";
@@ -163,7 +157,9 @@ function drawObjects() {
 
   // Helicopter hitpoints
   for(let i in heli.hitpoints) {
-    if (i === heli.hitpointDetected) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    if (heli.hitpointDetected === i) {
+      ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    }
     else {
       if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
       else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
@@ -301,8 +297,8 @@ class Wall {
          heli.hitpoints[i][0] <= this.x + this.w &&
          heli.hitpoints[i][1] >= this.y &&
          heli.hitpoints[i][1] <= this.y + this.h) {
-        gameOver();
         heli.hitpointDetected = i;
+        gameOver();
       }
     }
   }
