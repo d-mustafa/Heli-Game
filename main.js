@@ -1,11 +1,4 @@
 console.log('mouse detections')
-window.addEventListener('mousemove', (event) => {
-    const rect = cnv.getBoundingClientRect();
-    mouseX = event.clientX - rect.left;
-    mouseY = event.clientY - rect.top;
-
-    console.log(`x:${mouseX}\ny:${mouseY}`);
-});
 // Helicopter Game Start
 
 // Set up canvas and graphics context
@@ -13,6 +6,15 @@ const cnv = document.getElementById("my-canvas");
 const ctx = cnv.getContext("2d");
 cnv.width = 800;
 cnv.height = 600;
+
+// coordinates
+cnv.addEventListener('mousemove', (event) => {
+    const rect = cnv.getBoundingClientRect();
+    mouseX = event.clientX - rect.left;
+    mouseY = event.clientY - rect.top;
+
+    console.log(`x:${mouseX}\ny:${mouseY}`);
+});
 
 // Global Variables (Once)
 let mouseIsPressed = false;
