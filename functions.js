@@ -45,9 +45,12 @@ function addDistance() {
   // increase the distance over time
   distance.d += distance.speed;
   distance.speed += distance.accel;
-
   if (distance.speed > 0.5) {
     distance.speed = 0.5;
+  }
+  if (distance.d > best) {
+    best = distance.d;
+    userData.best = best;
   }
 }
 
@@ -100,6 +103,8 @@ function checkCollisions() {
 function gameOver() {
   if (distance.d > best) {
     best = Math.floor(distance.d);
+    userData.best = best;
+    localStorage.setItem('localHeliGameData', JSON.stringify(userData));
   }
 
   explosion.play();
