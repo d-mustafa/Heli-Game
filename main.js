@@ -1,4 +1,4 @@
-console.log('saving')
+console.log('Math.floor(distance.d);')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
