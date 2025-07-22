@@ -1,4 +1,4 @@
-console.log('hitpoint color')
+console.log('hitpoint color, layers')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
