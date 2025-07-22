@@ -1,4 +1,4 @@
-console.log('repeated sound and heli movements')
+console.log('stop sound and heli movements')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
