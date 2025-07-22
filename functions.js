@@ -235,6 +235,7 @@ function drawMainComponenents() {
     ctx.beginPath();
     ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
     ctx.fill();
+    console.log(`hitpoint ${i} drawn`);
   }
 }
 
