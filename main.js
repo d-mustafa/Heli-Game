@@ -7,17 +7,6 @@ const ctx = cnv.getContext("2d");
 cnv.width = 800;
 cnv.height = 600;
 
-// coordinates
-let track = false;
-cnv.addEventListener('mousemove', (event) => {
-    if (track) {
-        const rect = cnv.getBoundingClientRect();
-        mouseX = event.clientX - rect.left;
-        mouseY = event.clientY - rect.top;
-        console.log(`x:${mouseX}\ny:${mouseY}`);
-    }
-});
-
 // Global Variables (Once)
 let mouseIsPressed = false;
 let now = Date.now();
@@ -119,3 +108,15 @@ function releaseHandler() {
     });
   }
 }
+
+// Dev Tools
+let track = false;
+let enableHitPoints = false;
+cnv.addEventListener('mousemove', (event) => {
+    if (track) {
+        const rect = cnv.getBoundingClientRect();
+        mouseX = event.clientX - rect.left;
+        mouseY = event.clientY - rect.top;
+        console.log(`x:${mouseX}\ny:${mouseY}`);
+    }
+});
