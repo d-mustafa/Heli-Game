@@ -36,6 +36,7 @@ reset();
 window.addEventListener("load", draw);
 
 function draw() {
+  now = Date.now();
   if (state === "start") {
     drawStart();
   } else if (state === "gameon") {
