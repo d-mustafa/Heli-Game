@@ -1,4 +1,11 @@
-console.log('powerUpHitbox')
+console.log('mouse detections')
+window.addEventListener('click', (event) => {
+    const rect = cnv.getBoundingClientRect();
+    mouseX = event.clientX - rect.left;
+    mouseY = event.clientY - rect.top;
+
+    console.log(`x:${mouseX}\ny:${mouseY}`);
+});
 // Helicopter Game Start
 
 // Set up canvas and graphics context
