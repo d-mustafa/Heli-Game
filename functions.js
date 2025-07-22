@@ -143,7 +143,7 @@ function drawGameOver() {
   ctx.strokeStyle = "red";
   ctx.lineWidth = 5;
   ctx.beginPath();
-  ctx.arc(heli.x + heli.w / 2, heli.y + heli.h / 2, 60, 0, 2 * Math.PI);
+  ctx.arc(heli.offsetX, heli.offsetY, 60, 0, 2 * Math.PI);
   ctx.stroke();
 
   // Game Over Text
@@ -165,6 +165,8 @@ function reset() {
     accel: 0.5,
     invincible: false,
   };
+  heli.offsetX = heli.x + heli.w/2;
+  heli.offsetY = heli.y + heli.h/2;
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
   wall3 = new Wall(cnv.width + 1000);
@@ -208,7 +210,7 @@ function drawMainComponenents() {
   
   ctx.fillStyle = "blue";
   ctx.beginPath();
-  ctx.arc(heli.x, heli.y, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX, heli.offsetY, 5, 0, Math.PI * 2);
   ctx.fill();
 }
 
