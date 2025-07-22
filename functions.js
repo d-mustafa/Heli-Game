@@ -144,7 +144,7 @@ function moveHeli() {
   // Constrain Speed (max/min)
   if (heli.speed > 5) {
     heli.speed = 5;
-  } else if (heli.speed < -5) {
+  } else if (heli.speed < -7.5) {
     heli.speed = -7.5;
   }
 
@@ -193,7 +193,7 @@ function reset() {
     w: 80,
     h: 40,
     speed: 0,
-    lift: 1,
+    lift: 0.75,
     gravity: 0.3,
     invincible: false,
     hitpointDetected: -1,
