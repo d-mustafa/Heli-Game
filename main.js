@@ -1,4 +1,4 @@
-console.log('pause propeller sound and heli movements')
+console.log('repeated sound and heli movements')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
@@ -48,30 +48,6 @@ function draw() {
   } else if (state === "gameover") {
     drawGameOver();
   }
-
-  if (mouseIsPressed && state !== "gameover") {
-    // Play propeller sound
-    if (state !== "gameover") {
-      propeller.currentTime = 0;
-      propellerPromise = propeller.play();
-    }
-  } else {
-    // Pause propeller sound without causing errors
-    if (propellerPromise !== undefined) {
-      propellerPromise.then(_ => {
-        // Automatic playback started!
-        // Show playing UI.
-        // We can now safely pause video...
-        propeller.pause();
-      })
-      .catch(error => {
-        // Auto-play was prevented
-        // Show paused UI.
-        console.warn(error);
-      });
-    }
-  }
-  
   // Request Animation Frame
   requestAnimationFrame(draw);
 }
@@ -103,16 +79,52 @@ document.addEventListener("contextmenu", function(event) {
   event.preventDefault();
 }, false);
 
+
 // Handlers
 function pressHandler() {
   mouseIsPressed = true;
   if (state === "start") {
     state = "gameon";
   }
+  if (state !== "gameover") {
+    // Play propeller sound
+    propeller.currentTime = 0;
+    propellerPromise = propeller.play();
+  } else {
+    // Pause propeller sound without causing errors
+    if (propellerPromise !== undefined) {
+      propellerPromise.then(_ => {
+        // Automatic playback started!
+        // Show playing UI.
+        // We can now safely pause video...
+        propeller.pause();
+      })
+      .catch(error => {
+        // Auto-play was prevented
+        // Show paused UI.
+        console.warn(error);
+      });
+    }
+  }
 }
 function releaseHandler() {
   mouseIsPressed = false;
+  // Pause propeller sound without causing errors
+  if (propellerPromise !== undefined) {
+    propellerPromise.then(_ => {
+      // Automatic playback started!
+      // Show playing UI.
+      // We can now safely pause video...
+      propeller.pause();
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      // Show paused UI.
+      console.warn(error);
+    });
+  }
 }
+
 
 // User Data
 const localData = localStorage.getItem('localHeliGameData');
