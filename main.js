@@ -1,4 +1,4 @@
-console.log('pause propeller sound')
+console.log('pause propeller sound and heli movements')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
