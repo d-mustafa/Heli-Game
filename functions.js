@@ -51,15 +51,15 @@ function checkCollisions() {
   wall3.checkCollisions()
   
   // Collisions with the powerUp
-  const dx = heli.offsetX - powerUp.x;
-  const dy = heli.offsetY - powerUp.y;
-  const dist = Math.hypot(dx, dy);
-
-  if (dist < powerUp.r + 20) {
-    heli.invincible = true;
-    powerUp.lastCollected = now;
-  };
-
+  for (let i in heli.hitpoints) {
+    const dx = heli.hitpoints[i][0] - powerUp.x;
+    const dy = heli.hitpoints[i][1] - powerUp.y;
+    const dist = Math.hypot(dx, dy);
+    if (dist < powerUp.r + 20) {
+      heli.invincible = true;
+      powerUp.lastCollected = now;
+    };
+  }
   if (now - powerUp.lastCollected < 3000) { // turns heli's color green
     heliImg.src = 'img/heliGreenTransparent.png';
     if (now - powerUp.lastCollected < 2750) heli.flickerTimer = now;
@@ -171,7 +171,7 @@ function reset() {
     speed: 0,
     accel: 0.5,
     invincible: false,
-    hitpoints: [],
+    hitpoints: [ [202, 261], [226, 256], [245, 253], [259, 253], [268, 256], [279, 262], [271, 280], [270, 290], [238, 290] ]
   };
   heli.offsetX = heli.x + heli.w/2;
   heli.offsetY = heli.y + heli.h/2;
@@ -217,10 +217,6 @@ function drawMainComponenents() {
   ctx.drawImage(heliImg, heli.x, heli.y);
   
   ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
-  // HIT POINTS
-  heli.hitpoints = [
-    [202, 261], [226, 256], [245, 253], [259, 253], [268, 256], [279, 262], [271, 280], [270, 290], [238, 290],
-  ]
   for(let i in heli.hitpoints) {
     ctx.beginPath();
     ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2, 0, Math.PI*2);
