@@ -285,10 +285,15 @@ class Wall {
   }
 
   checkCollisions() {
-    if (!heli.invincible &&
-       heli.offsetX + heli.w/2 >= this.x &&
-       heli.offsetX - heli.w/2 <= this.x + this.w &&
-       heli.offsetY + heli.h/2 >= this.y &&
-       heli.offsetY - heli.h/2 <= this.y + this.h) gameOver();
+    for(let i in heli.hitpoints) {
+      if (!heli.invincible &&
+         heli.hitpoints[i][0] >= this.x &&
+         heli.hitpoints[i][0] <= this.x + this.w &&
+         heli.hitpoints[i][1] >= this.y &&
+         heli.hitpoints[i][1] <= this.y + this.h) {
+        gameOver();
+        heli.hitpoints[i][2] = "rgba(255, 0, 0, 0.5)";
+      }
+    }
   }
 }
