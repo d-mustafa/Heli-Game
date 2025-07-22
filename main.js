@@ -16,6 +16,7 @@ heliImg.src = "img/heliBlueTransparent.png";
 const explosion = document.createElement("audio");
 explosion.src = "sound/explosion.wav";
 explosion.preload = "none";
+explosion.volume = 0.3;
 
 const propeller = document.createElement("audio");
 propeller.src = "sound/propeller.wav";
@@ -83,8 +84,10 @@ function pressHandler() {
   mouseIsPressed = true;
 
   // Play propeller sound
-  propeller.currentTime = 0;
-  propellerPromise = propeller.play();
+  if (state !== "gameover") {
+    propeller.currentTime = 0;
+    propellerPromise = propeller.play();
+  }
 
   // Start Game on Mousedown
   if (state === "start") {
