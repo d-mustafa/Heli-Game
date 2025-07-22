@@ -203,6 +203,10 @@ function drawMainComponenents() {
 
   // Helicopter
   ctx.drawImage(heliImg, heli.x, heli.y);
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(heli.x, heli.y, 5, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 function drawPowerUp(x, y, r) {
