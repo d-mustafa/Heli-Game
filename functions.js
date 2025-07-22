@@ -178,9 +178,9 @@ function reset() {
       return [ [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
       [this.x+56, this.y+3, 0], [this.x+68, this.y+5, 0], [this.x+79, this.y+12, 0],
       [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0] ]
-    }
-    get offsetX() {this.x + this.w/2}
-    get offsetY() {this.y + this.h/2)
+    },
+    get offsetX() {this.x + this.w/2},
+    get offsetY() {this.y + this.h/2},
   };
 
   wall1 = new Wall(cnv.width);
