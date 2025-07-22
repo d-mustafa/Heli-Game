@@ -72,9 +72,10 @@ function checkCollisions() {
     const dx = heli.hitpoints[i][0] - powerUp.x;
     const dy = heli.hitpoints[i][1] - powerUp.y;
     const dist = Math.hypot(dx, dy);
-    if (dist < powerUp.r + 20) {
+    if (dist < powerUp.r + 10) {
       heli.invincible = true;
       powerUp.lastCollected = now;
+      heli.hitpoints[i][3] = "rgba(255, 0, 0, 0.5)";
     };
   }
   if (now - powerUp.lastCollected < 3000) { // turns heli's color green
@@ -142,18 +143,20 @@ function moveHeli() {
 }
 
 function drawObjects() {
+  // PowerUp despawning after collection
   if (heli.invincible) {
     powerUp.x = cnv.width + 1250;
     powerUp.y = Math.random() * 300 + 100;
   }
   
   drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
-  // Hitbox
+  // PowerUp Hitbox
   ctx.fillStyle = "rgba(0, 255, 0, 0.2)";
   ctx.beginPath();
-  ctx.arc(powerUp.x, powerUp.y, powerUp.r + 20, 0, Math.PI*2);
+  ctx.arc(powerUp.x, powerUp.y, powerUp.r + 10, 0, Math.PI*2);
   ctx.fill();
-  
+
+  // Walls
   ctx.fillStyle = "green";
   ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
   ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h);
@@ -174,15 +177,15 @@ function reset() {
     invincible: false,
     /* hitpoints: [ [202, 261], [229, 255], [245, 253], [256, 253], [268, 255], [279, 262], [269, 277], [268, 289], [238, 288] ] */
     hitpoints: [
-      [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
-      [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
-      [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+38, this.y+38],
+      [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
+      [this.x+56, this.y+3, 0], [this.x+68, this.y+5, 0], [this.x+79, this.y+12, 0],
+      [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0],
     ],
     updateHitpoints: function() {
       this.hitpoints = [
-      [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
-      [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
-      [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+38, this.y+38],
+      [this.x+2, this.y+11, 0], [this.x+29, this.y+5, 0], [this.x+45, this.y+3, 0],
+      [this.x+56, this.y+3, 0], [this.x+68, this.y+5, 0], [this.x+79, this.y+12, 0],
+      [this.x+69, this.y+27, 0], [this.x+68, this.y+39, 0], [this.x+38, this.y+38, 0],
     ];
     }
   };
@@ -229,13 +232,16 @@ function drawMainComponenents() {
   
   ctx.drawImage(heliImg, heli.x, heli.y);
   
-  if (!heli.invincible) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
-  else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
   for(let i in heli.hitpoints) {
+    if (heli.hitpoints[i][3] === 0) {
+      if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+      else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+    }
+    else ctx.fillStyle = heli.hitpoints[i][3];
+    
     ctx.beginPath();
     ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
     ctx.fill();
-    //console.log(`hitpoint (${heli.hitpoints[i][0]}, ${heli.hitpoints[i][1]}) drawn`);
   }
 }
 
