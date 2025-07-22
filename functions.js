@@ -241,6 +241,19 @@ function drawMainComponenents() {
   ctx.fillRect(heli.x, heli.y, heli.w, heli.h);
   
   ctx.drawImage(heliImg, heli.x, heli.y);
+
+  if (state === "start") {
+    for(let i in heli.hitpoints) {
+      if (heli.hitpointDetected === i) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+      else {
+        if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+        else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+      }
+      ctx.beginPath();
+      ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
 }
 
 function drawPowerUp(x, y, r) {
