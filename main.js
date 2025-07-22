@@ -1,4 +1,4 @@
-console.log('early saving')
+console.log('saving')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
