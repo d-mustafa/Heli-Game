@@ -67,15 +67,16 @@ document.addEventListener("keyup", (event) => {
 });
 
 // Touchscreen
-document.addEventListener("touchstart", (event) => {
+cnv.addEventListener("touchstart", (event) => {
   pressHandler();
   event.preventDefault(); // Prevent long-press and selection
 }, { passive: false });
 
-document.addEventListener("touchend", releaseHandler, false);
-document.addEventListener("touchcancel", releaseHandler, false);
+cnv.addEventListener("touchend", releaseHandler, false);
+cnv.addEventListener("touchcancel", releaseHandler, false);
 
-document.addEventListener("contextmenu", function(event) {
+// Context Menu
+cnv.addEventListener("contextmenu", function(event) {
   event.preventDefault();
 }, false);
 
