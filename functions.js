@@ -216,7 +216,8 @@ function drawMainComponenents() {
   
   ctx.drawImage(heliImg, heli.x, heli.y);
   
-  ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
+  if (!heli.invincible) ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
+  else ctx.fillStyle = "rgba(0, 255, 0, 0.2)";
   for(let i in heli.hitpoints) {
     ctx.beginPath();
     ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2, 0, Math.PI*2);
