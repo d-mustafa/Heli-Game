@@ -160,6 +160,19 @@ function drawObjects() {
   ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
   ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h);
   ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
+
+  // Helicopter hitpoints
+  for(let i in heli.hitpoints) {
+    if (i === heli.hitpointDetected) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    else {
+      if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+      else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+    }
+    
+    ctx.beginPath();
+    ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
+    ctx.fill();
+  }
 }
 
 // HELPER FUNCTIONS
@@ -234,19 +247,6 @@ function drawMainComponenents() {
   ctx.fillRect(heli.x, heli.y, heli.w, heli.h);
   
   ctx.drawImage(heliImg, heli.x, heli.y);
-
-  // Helicopter hitpoints
-  for(let i in heli.hitpoints) {
-    if (i === heli.hitpointDetected) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-    else {
-      if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
-      else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
-    }
-    
-    ctx.beginPath();
-    ctx.arc(heli.hitpoints[i][0], heli.hitpoints[i][1], 2.5, 0, Math.PI*2);
-    ctx.fill();
-  }
 }
 
 function drawPowerUp(x, y, r) {
