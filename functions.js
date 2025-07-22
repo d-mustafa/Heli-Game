@@ -67,9 +67,10 @@ function checkCollisions() {
     if (now - heli.flickerTimer >= 500) {
       heli.flickerTimer = now;
       
-      if (heliImg.src === 'img/heliGreenTransparent.png') {
-        heliImg.src = 'img/heliBlueTransparent.png';
-      } else heliImg.src = 'img/heliGreenTransparent.png';
+      
+      if (heliImg.src.includes('img/heliBlueTransparent.png')) {
+        heliImg.src = 'img/heliGreenTransparent.png';
+      } else heliImg.src = 'img/heliBlueTransparent.png';
     }
   } else { // turns heli's color blue
     heli.invincible = false;
@@ -163,7 +164,6 @@ function reset() {
     speed: 0,
     accel: 0.5,
     invincible: false,
-    flickerTimer: null,
   };
   wall1 = new Wall(cnv.width);
   wall2 = new Wall(cnv.width + 500);
@@ -179,7 +179,7 @@ function reset() {
     r: 20,
     speed: -3,
     accel: -0.003,
-    lastCollected: null,
+    lastCollected: 0,
   };
 }
 
@@ -201,7 +201,7 @@ function drawMainComponenents() {
   ctx.fillText(`BEST: ${best}`, cnv.width - 250, cnv.height - 15);
 
   // Helicopter
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
   ctx.fillRect(heli.x, heli.y, heli.w, heli.h);
   
   ctx.drawImage(heliImg, heli.x, heli.y);
