@@ -1,4 +1,4 @@
-console.log('invincibility file added')
+console.log('invincibility finalized')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
