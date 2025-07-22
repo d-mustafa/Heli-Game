@@ -62,7 +62,7 @@ function checkCollisions() {
     if (heli.hitpoints[i][1] < 50 || heli.hitpoints[i][1] > cnv.height - 50) {
       if (heli.invincible) heli.y -= heli.speed;
       else {
-        heli.hitpointDetcted = i;
+        heli.hitpointDetected = i;
         gameOver();
       }
     }
@@ -72,7 +72,7 @@ function checkCollisions() {
     const dy = heli.hitpoints[i][1] - powerUp.y;
     const dist = Math.hypot(dx, dy);
     if (dist < powerUp.r + 10) {
-      heli.hitpointDetcted = i;
+      heli.hitpointDetected = i;
       heli.invincible = true;
       powerUp.lastCollected = now;
     };
@@ -157,9 +157,7 @@ function drawObjects() {
 
   // Helicopter hitpoints
   for(let i in heli.hitpoints) {
-    if (heli.hitpointDetected === i) {
-      ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-    }
+    if (heli.hitpointDetected === i) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
     else {
       if (heliImg.src.includes('img/heliBlueTransparent.png')) ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
       else ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
