@@ -1,4 +1,4 @@
-console.log('flicker, collisions, now')
+console.log('flicker, collisions, milliseconds')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
