@@ -1,4 +1,4 @@
-console.log('offsets, powerUpHitbox')
+console.log('powerUpHitbox')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
