@@ -239,11 +239,7 @@ function drawMainComponenents() {
   ctx.fillText(`BEST: ${best}`, cnv.width - 250, cnv.height - 15);
 
   // Helicopter
-  ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-  ctx.fillRect(heli.x, heli.y, heli.w, heli.h);
-  
   ctx.drawImage(heliImg, heli.x, heli.y);
-
   if (state === "start" && enableHitPoints) {
     for(let i in heli.hitpoints) {
       if (heli.hitpointDetected === i) ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
