@@ -1,4 +1,4 @@
-console.log('mobile scroll')
+console.log('cnv')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
@@ -54,8 +54,8 @@ function draw() {
 
 // EVENT STUFF
 // Mouse
-document.addEventListener("mousedown", pressHandler);
-document.addEventListener("mouseup", releaseHandler);
+cnv.addEventListener("mousedown", pressHandler);
+cnv.addEventListener("mouseup", releaseHandler);
 
 // Keyboard
 document.addEventListener("keydown", (event) => {
