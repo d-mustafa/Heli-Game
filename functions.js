@@ -218,32 +218,34 @@ function drawMainComponenents() {
   
   ctx.fillStyle = "blue";
   // HIT POINTS
+  const heliW = heli.w/2
+  const heliH = heli.h/2
   ctx.beginPath();
-  ctx.arc(heli.offsetX-heli.w+5, heli.offsetY, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX-heliW+5, heli.offsetY, 5, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(heli.offsetX, heli.offsetY-heli.h, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX, heli.offsetY-heliH, 5, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(heli.offsetX+10, heli.offsetY-heli.h, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX+10, heli.offsetY-heliH, 5, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(heli.offsetX+heli.w, heli.offsetY-5, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX+heliW, heli.offsetY-5, 5, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(heli.offsetX+heli.w-10, heli.offsetY+2, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX+heliW-10, heli.offsetY+2, 5, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(heli.offsetX, heli.offsetY+heli.h, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX, heli.offsetY+heliH, 5, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(heli.offsetX+heli.w-10, heli.offsetY+heli.h, 5, 0, Math.PI * 2);
+  ctx.arc(heli.offsetX+heliW-10, heli.offsetY+heliH, 5, 0, Math.PI * 2);
   ctx.fill();
 }
 
