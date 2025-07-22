@@ -142,10 +142,10 @@ function moveHeli() {
   heli.speed += heli.gravity;
 
   // Constrain Speed (max/min)
-  if (heli.speed > 5) {
-    heli.speed = 5;
-  } else if (heli.speed < -6) {
-    heli.speed = -6;
+  if (heli.speed < heli.max) {
+    heli.speed = heli.max;
+  } else if (heli.speed > heli.min) {
+    heli.speed = heli.min;
   }
 
   // Move Helicopter by its speed
@@ -195,6 +195,8 @@ function reset() {
     speed: 0,
     lift: 0.65,
     gravity: 0.3,
+    max: -6,
+    min: 5,
     invincible: false,
     hitpointDetected: -1,
     /* hitpoints: [
