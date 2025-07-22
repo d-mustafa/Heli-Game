@@ -1,4 +1,4 @@
-console.log('gravity and lift')
+console.log('gravity and lift 2')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
