@@ -1,4 +1,4 @@
-console.log('updateHitpoints, collisions, (x,x)')
+console.log('collisions, (x,x), track')
 // Helicopter Game Start
 
 // Set up canvas and graphics context
@@ -8,12 +8,14 @@ cnv.width = 800;
 cnv.height = 600;
 
 // coordinates
+let track = false;
 cnv.addEventListener('mousemove', (event) => {
-    const rect = cnv.getBoundingClientRect();
-    mouseX = event.clientX - rect.left;
-    mouseY = event.clientY - rect.top;
-
-    console.log(`x:${mouseX}\ny:${mouseY}`);
+    if (track) {
+        const rect = cnv.getBoundingClientRect();
+        mouseX = event.clientX - rect.left;
+        mouseY = event.clientY - rect.top;
+        console.log(`x:${mouseX}\ny:${mouseY}`);
+    }
 });
 
 // Global Variables (Once)
