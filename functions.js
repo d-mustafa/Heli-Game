@@ -69,7 +69,7 @@ function checkCollisions() {
       
       if (heliImg.src === 'img/heliGreenTransparent.png') {
         heliImg.src = 'img/heliBlueTransparent.png';
-      } elseheliImg.src = 'img/heliGreenTransparent.png';
+      } else heliImg.src = 'img/heliGreenTransparent.png';
     }
   } else { // turns heli's color blue
     heli.invincible = false;
