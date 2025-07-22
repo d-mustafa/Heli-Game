@@ -171,7 +171,19 @@ function reset() {
     speed: 0,
     accel: 0.5,
     invincible: false,
-    hitpoints: [ [202, 261], [226, 256], [245, 253], [259, 253], [268, 256], [279, 262], [271, 280], [270, 290], [238, 290] ]
+    /* hitpoints: [ [202, 261], [229, 255], [245, 253], [256, 253], [268, 255], [279, 262], [269, 277], [268, 289], [238, 288] ] */
+    hitpoints: [
+      [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
+      [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
+      [this.x+69, this.y+27], [this.x+68, this.x+39], [this.x+38, this.y+38],
+    ],
+    updateHitpoints: function() {
+      this.hitpoints = [
+      [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
+      [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
+      [this.x+69, this.y+27], [this.x+68, this.x+39], [this.x+38, this.y+38],
+    ];
+    }
   };
   heli.offsetX = heli.x + heli.w/2;
   heli.offsetY = heli.y + heli.h/2;
