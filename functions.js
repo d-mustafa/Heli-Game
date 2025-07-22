@@ -178,12 +178,14 @@ function reset() {
     hitpointDetected: -1,
     /* hitpoints: [
     [202, 261], [229, 255], [245, 253], [256, 253], [268, 255],
-    [279, 262], [269, 277], [268, 289], [238, 288] [227, 275]
+    [279, 262], [269, 277], [268, 289], [239, 288] [227, 275],
+    [210, 272],
     ] */
     get hitpoints() {
       return [
         [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3], [this.x+56, this.y+3], [this.x+68, this.y+5],
-        [this.x+79, this.y+12], [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+38, this.y+38], [this.x+27, this.y+25]
+        [this.x+79, this.y+12], [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+39, this.y+38], [this.x+27, this.y+25],
+        [this.x+10, this.y+22]
       ]
     },
     get offsetX() {this.x + this.w/2},
