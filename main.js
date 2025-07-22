@@ -1,5 +1,5 @@
 console.log('mouse detections')
-window.addEventListener('click', (event) => {
+window.addEventListener('mousemove', (event) => {
     const rect = cnv.getBoundingClientRect();
     mouseX = event.clientX - rect.left;
     mouseY = event.clientY - rect.top;
