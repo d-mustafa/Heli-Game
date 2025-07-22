@@ -1,4 +1,4 @@
-console.log('new invincibility file')
+console.log('pause propeller sound')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
@@ -22,6 +22,7 @@ const propeller = document.createElement("audio");
 propeller.src = "sound/propeller.wav";
 propeller.preload = "none";
 let propellerPromise;
+propeller.volume = 0.3;
 
 const invincibility = document.createElement("audio");
 invincibility.src = "sound/invincibility.mp3";
@@ -48,6 +49,29 @@ function draw() {
     drawGameOver();
   }
 
+  if (mouseIsPressed && state !== "gameover") {
+    // Play propeller sound
+    if (state !== "gameover") {
+      propeller.currentTime = 0;
+      propellerPromise = propeller.play();
+    }
+  } else {
+    // Pause propeller sound without causing errors
+    if (propellerPromise !== undefined) {
+      propellerPromise.then(_ => {
+        // Automatic playback started!
+        // Show playing UI.
+        // We can now safely pause video...
+        propeller.pause();
+      })
+      .catch(error => {
+        // Auto-play was prevented
+        // Show paused UI.
+        console.warn(error);
+      });
+    }
+  }
+  
   // Request Animation Frame
   requestAnimationFrame(draw);
 }
@@ -82,36 +106,12 @@ document.addEventListener("contextmenu", function(event) {
 // Handlers
 function pressHandler() {
   mouseIsPressed = true;
-
-  // Play propeller sound
-  if (state !== "gameover") {
-    propeller.currentTime = 0;
-    propellerPromise = propeller.play();
-  }
-
-  // Start Game on Mousedown
   if (state === "start") {
     state = "gameon";
   }
 }
-
 function releaseHandler() {
   mouseIsPressed = false;
-
-  // Pause propeller sound without causing errors
-  if (propellerPromise !== undefined) {
-    propellerPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      // We can now safely pause video...
-      propeller.pause();
-    })
-    .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
-      console.warn(error);
-    });
-  }
 }
 
 // User Data
