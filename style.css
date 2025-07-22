@@ -9,3 +9,10 @@ body {
   -webkit-touch-callout: none; /* iOS Safari */
   touch-action: none; /* Prevent gestures like double-tap zoom, etc */
 }
+
+/* CSS (visual size) */
+canvas {
+  width: 800px;
+  height: 600px;
+  touch-action: none;
+}
