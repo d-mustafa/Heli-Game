@@ -54,7 +54,7 @@ function addDistance() {
     
     // save every 3 seconds
     if (now - lastSave >= 3000) {
-      localStorage.setItem('localHeliGameData', JSON.parse(userData));
+      localStorage.setItem('localHeliGameData', JSON.stringify(userData));
       lastSave = Date.now();
     }
   }
