@@ -60,11 +60,11 @@ function checkCollisions() {
     powerUp.lastCollected = now;
   };
 
-  if (now - powerUp.lastCollected < 3) { // turns heli's color green
+  if ((now - powerUp.lastCollected)/1000 < 3) { // turns heli's color green
     heliImg.src = 'img/heliGreenTransparent.png';
     if (now - powerUp.lastCollected < 2.5) heli.flickerTimer = now;
   }
-  else if (now - powerUp.lastCollected < 5) { // heli's color swaps between green and blue
+  else if ((now - powerUp.lastCollected)/1000 < 5) { // heli's color swaps between green and blue
     if (now - heli.flickerTimer >= 0.5) {
       heli.flickerTimer = now;
       
