@@ -57,9 +57,6 @@ function checkCollisions() {
 
   if (dist < powerUp.r + 20) {
     heli.invincible = true;
-    powerUp.x = cnv.width + 1250;
-    powerUp.y = Math.random() * 300 + 100;
-    powerUp.speed = -3;
     powerUp.lastCollected = now;
   };
 
@@ -126,7 +123,11 @@ function moveHeli() {
 }
 
 function drawObjects() {
-  drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
+  if (!heli.invincible) drawPowerUp(powerUp.x, powerUp.y, powerUp.r);
+  else {
+    powerUp.x = cnv.width + 1250;
+    powerUp.y = Math.random() * 300 + 100;
+  }
   
   ctx.fillStyle = "green";
   ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);
