@@ -1,4 +1,4 @@
-console.log('gravity and lift real-time control')
+console.log('invincibility file added')
 // Helicopter Game Start
 // Set up canvas and graphics context
 const cnv = document.getElementById("my-canvas");
@@ -22,6 +22,10 @@ propeller.src = "sound/propeller.wav";
 propeller.preload = "none";
 let propellerPromise;
 
+const invincibility = document.createElement("audio");
+invincibility.src = "sound/invincibility.mp3";
+invincibility.preload = "none";
+
 // Global Variables (Reset)
 let state;
 let heli;
@@ -33,7 +37,6 @@ reset();
 
 // Draw Function
 window.addEventListener("load", draw);
-
 function draw() {
   now = Date.now();
   if (state === "start") {
@@ -92,7 +95,7 @@ function pressHandler() {
 function releaseHandler() {
   mouseIsPressed = false;
 
-  // Pause propeller sound
+  // Pause propeller sound without causing errors
   if (propellerPromise !== undefined) {
     propellerPromise.then(_ => {
       // Automatic playback started!
@@ -132,7 +135,6 @@ if (resetLocalData || !localData) {
   userData = {best: best,};
   localStorage.setItem('localHeliGameData', JSON.stringify(userData));
 }
-
 // if the user crashes
 window.addEventListener('beforeunload', () => {
   userData.best = best;
