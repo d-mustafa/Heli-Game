@@ -24,6 +24,23 @@ function runGame() {
   drawObjects();
 }
 
+function drawGameOver() {
+  drawMainComponenents();
+  drawObjects();
+
+  // Circle around Helicopter
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.arc(heli.offsetX, heli.offsetY, 60, 0, 2 * Math.PI);
+  ctx.stroke();
+
+  // Game Over Text
+  ctx.font = "40px Consolas";
+  ctx.fillStyle = "lightblue";
+  ctx.fillText("GAME OVER", 350, 285);
+}
+
 function addDistance() {
   // increase the distance over time
   distance.d += distance.speed;
@@ -143,23 +160,6 @@ function drawObjects() {
   ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h);
 }
 
-function drawGameOver() {
-  drawMainComponenents();
-  drawObjects();
-
-  // Circle around Helicopter
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = 5;
-  ctx.beginPath();
-  ctx.arc(heli.offsetX, heli.offsetY, 60, 0, 2 * Math.PI);
-  ctx.stroke();
-
-  // Game Over Text
-  ctx.font = "40px Consolas";
-  ctx.fillStyle = "lightblue";
-  ctx.fillText("GAME OVER", 350, 285);
-}
-
 // HELPER FUNCTIONS
 function reset() {
   // Restarts the game
@@ -176,13 +176,13 @@ function reset() {
     hitpoints: [
       [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
       [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
-      [this.x+69, this.y+27], [this.x+68, this.x+39], [this.x+38, this.y+38],
+      [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+38, this.y+38],
     ],
     updateHitpoints: function() {
       this.hitpoints = [
       [this.x+2, this.y+11], [this.x+29, this.y+5], [this.x+45, this.y+3],
       [this.x+56, this.y+3], [this.x+68, this.y+5], [this.x+79, this.y+12],
-      [this.x+69, this.y+27], [this.x+68, this.x+39], [this.x+38, this.y+38],
+      [this.x+69, this.y+27], [this.x+68, this.y+39], [this.x+38, this.y+38],
     ];
     }
   };
